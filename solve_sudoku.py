@@ -7,20 +7,27 @@ def read_input():
     file_name = sys.argv[1]
     f = open(file_name, "r")
     num = len(f.readlines())
-    # print(num)
-    # f.close()
-    # f = open(file_name, "r")
     f.seek(0)
     sudoku_frame = [[0 for x in range(num)] for x in range(num)]
     for iter1, x in enumerate(f.readlines()):
         for iter2, y in enumerate([z for z in x.split()]):
             sudoku_frame[iter1][iter2] = int(y)
-    # print(sudoku_frame)
     return sudoku_frame
 
 
+def extract_num(name):
+    nums = [int(x) for x in name if x.isdigit()]
+    num = 0
+    for x in nums:
+        num = num * 10 + x
+    return str(num)
+
+
 def write_output(sudoku):
-    f = open(sys.argv[2], "w")
+    inp_file = sys.argv[1]
+    num = extract_num(inp_file)
+    out_file = "C:\\Users\\USER\\PycharmProjects\\Sudoku\\result\\result"+num+".txt"
+    f = open(out_file, "w")
     for x in sudoku:
         for y in x:
             f.write(str(y)+" ")
