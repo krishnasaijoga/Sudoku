@@ -1,5 +1,6 @@
 import sys
 from datetime import datetime
+from fill_sudoku import fill_sudoku
 
 
 def read_input():
@@ -38,11 +39,9 @@ def write_output(sudoku):
 
 def solve_sudoku():
     start_time = datetime.now()
-    inp_sudoku = read_input()
-    # print(inp_sudoku)
-    from fill_sudoku import fill_sudoku
-    res_sudoku = fill_sudoku(inp_sudoku)
-    write_output(res_sudoku)
+    inp_sudoku = read_input()   # read input from file
+    res_sudoku = fill_sudoku(inp_sudoku)    # fills sudoku using backtracking
+    write_output(res_sudoku)    # write into an output file
     end_time = datetime.now()
     print("Time Taken = ", (end_time - start_time))
 
